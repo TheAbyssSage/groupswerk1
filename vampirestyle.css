@@ -1,10 +1,10 @@
 :root {
-    --primary: #ad274b;
-    --primary-light: #c47481;
-    --secondary: #7a1424;
-    --background: #232c3a;
-    --background-light: #273c4b;
-    --accent: #b5c2c7;
+    --primary: #ff9191;
+    --primary-light: #ffc4c4;
+    --secondary: #8B0202;
+    --background: #0C0004;
+    --background-light: #3d161e;
+    --accent: #8B0202;
 }
 
 body {
@@ -33,7 +33,7 @@ body {
 }
 
 .text-box {
-    background: #b5c2c71e;
+    background: #c4c4c41e;
     border-radius: 20px;
 }
 
@@ -51,16 +51,34 @@ body {
     color: var(--primary);
 }
 
+.temperature-unit {
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--primary-light);
+}
+
 .weather-icon {
     font-size: 10rem;
     padding: 5px; 
 }
 
-.cloudyness {
+.current-weather {
     color: var(--primary-light);
     font-weight: 400;
     font-size: 1.5rem;
     margin-top: -25px;
+}
+
+.huntingtime {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-top: 10px;
+    border-bottom: var(--secondary) 5px solid;
+    border-radius: 15px;
+}
+
+.vampire {
+    font-size: 2.5rem;
 }
 
 /* Blood Drop Animation */

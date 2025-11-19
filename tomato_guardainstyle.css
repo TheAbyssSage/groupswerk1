@@ -11,7 +11,8 @@
     background: #1c1c1cf4 !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     padding: 1rem 0;
-    position: sticky top:zero;
+    position: sticky;
+    top:0;
     width: 100%;
     z-index: 1000;
 }

@@ -9,23 +9,22 @@
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="vampirestyle.css">
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
     <!-- Navgation Bar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar-expand-lg bg-body-tertiary navbar">
         <div class="container-fluid">
             <a href="index.html"><img src="images/logo_t.png" alt="Weather App" width="70" height="me-auto"
-                class="d-inline-block align-text-top" style="cursor: pointer;"></a>
+                    class="d-inline-block align-text-top" style="cursor: pointer;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -53,9 +52,22 @@
         </div>
     </nav>
 
-    <div class="d-flex justify-content-center mt-5 centered">
+    <div class="bloodcontainer">
+        <div class='blooddrop'></div>
+        <div class='blooddrop'></div>
+        <div class='blooddrop'></div>
+        <div class='blooddrop'></div>
+        <div class='blooddrop'></div>
+        <div class='blooddrop'></div>
+        <div class='blooddrop'></div>
+        <div class='blooddrop'></div>
+        <div class='blooddrop'></div>
+        <div class='blooddrop'></div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5 centered font">
         <div class="d-flex flex-column p-5 container">
-            <div class="d-flex flex-fow justify-content-between bg-primary-subtle p-3">
+            <div class="d-flex flex-fow justify-content-between text-box p-3">
                 <div>
                     <div class="primary">
                         Location
@@ -69,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-row justify-content-between bg-primary-subtle p-3 mt-5">
+            <div class="d-flex flex-row justify-content-between text-box  p-3 mt-5">
                 <div class="temperature">
                     21°<span style="font-size: 10;">C</span>
                 </div>
@@ -77,14 +89,14 @@
                     <div class="weather-icon">
                         ☁️
                     </div>
-                    <div>
+                    <div class="primary-light">
                         <!-- Cloudyness -->
                         Partly Cloudy
                     </div>
                 </div>
             </div>
 
-            <div class="d-flex flex-row justify-content-evenly mt-5 bg-primary-subtle p-3 text-center">
+            <div class="d-flex flex-row justify-content-evenly text-box  mt-5 p-3 text-center">
                 <div>
                     Humidity<br>
                     60%
@@ -99,7 +111,7 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-evenly mt-5 bg-primary-subtle p-3 text-center">
+            <div class="d-flex justify-content-evenly text-box  mt-5 p-3 text-center">
                 <div>
                     🌅<br>sunrise: 06:12 AM
                 </div>
@@ -111,7 +123,7 @@
     </div>
 
 
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>

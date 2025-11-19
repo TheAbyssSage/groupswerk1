@@ -52,7 +52,15 @@ body {
 }
 
 .weather-icon {
-    font-size: 10rem;    
+    font-size: 10rem;
+    padding: 5px; 
+}
+
+.cloudyness {
+    color: var(--primary-light);
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-top: -25px;
 }
 
 /* Blood Drop Animation */
@@ -215,5 +223,5 @@ body {
 }
 @keyframes drip {
   0% { top: -37px; }
-  100% { top: 900px; }
+  100% { top: 700px; }
 }

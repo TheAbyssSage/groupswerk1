@@ -13,7 +13,7 @@ function showWeather() {
 const API_KEY = "77f36ebced508f08d1bb597493dd3030";
 
 document.getElementById("search-btn").addEventListener("click", () => {
-    const currentLocation = document.getElementById("location").value.trim();
+    const currentLocation = document.getElementById("locationForm").value.trim();
   
     if (!currentLocation) {
         alert("Please enter a location ya tw*t");

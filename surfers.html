@@ -14,7 +14,9 @@
 </head>
 
 <body>
-    <input type="text" id="locationForm" placeholder="Enter lcoation..." class="border p-2"/><button id="search-btn">Set Location</button>
+    <input type="text" id="locationForm" placeholder="Enter lcoation..." class="border p-2" list="locationList"/>
+    <datalist id="locationList"></datalist>
+    <button id="search-btn">Set Location</button>
 
     <div id="windSpeed"></div>
     <div id="windDirection"></div>
@@ -27,7 +29,7 @@
 
 
 
-    <script src="../app.js"></script>
+    <script src="app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>

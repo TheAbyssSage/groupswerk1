@@ -48,21 +48,27 @@ function displayData (data) {
         const WINDDIRECTION = data.wind.deg;
         const RAIN = data.rain?.["1h"] ?? 0;
         const TEMPERATURE = data.main.temp;
-        const SUNRISE = data.sys.sunrise;
-        const SUNSET = data.sys.sunset;
+        
+        const sunriseTimestamp = data.sys.sunrise;
+        const sunsetTimestamp = data.sys.sunset;
+        const sunriseDate = new Date(sunriseTimestamp * 1000);
+        const sunsetDate = new Date(sunsetTimestamp * 1000);
+        const SUNRISE = sunriseDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const SUNSET = sunsetDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
         const CLOUDCOVERAGE = data.clouds.all;
         const HUMIDITY = data.main.humidity;
 
         // console.log(WINDSPEED)
         // console.log(WINDDIRECTION)
 
-        windSpeed.innerHTML = `The wind speed is ${WINDSPEED}`;
-        windDirection.innerHTML = `The wind direction is ${WINDDIRECTION}`;
-        rain.innerHTML = `Rain is ${RAIN}`;
-        temperature.innerHTML = `Temp is ${TEMPERATURE}`;
-        sunrise.innerHTML = `Sunrise is ${SUNRISE}`;
-        sunset.innerHTML = `Sunsetis ${SUNSET}`;
-        cloudCoverage.innerHTML = `Cloud coverage is ${CLOUDCOVERAGE}`;
-        humidity.innerHTML = `Humidity is ${HUMIDITY}`;
+        windSpeed.innerHTML = `The wind speed is ${WINDSPEED} m/s`;
+        windDirection.innerHTML = `The wind direction is ${WINDDIRECTION} degrees`;
+        rain.innerHTML = `Rain in the past hour is ${RAIN} mm`;
+        temperature.innerHTML = `Temperature is ${TEMPERATURE} degrees`;
+        sunrise.innerHTML = `Sunrise is at ${SUNRISE}`;
+        sunset.innerHTML = `Sunset is at ${SUNSET}`;
+        cloudCoverage.innerHTML = `Cloud coverage is ${CLOUDCOVERAGE}%`;
+        humidity.innerHTML = `Humidity is ${HUMIDITY}%`;
     
 }

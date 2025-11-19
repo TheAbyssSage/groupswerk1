@@ -5,3 +5,7 @@ function init(){
 function getWeather() {
     // code
 }
+
+function showWeather() {
+    // code
+}

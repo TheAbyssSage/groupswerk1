@@ -1,0 +1,42 @@
+:root {
+    --primary: #5e2534;
+    --primary-light: #7a3944;
+    --secondary: #3b1a1f;
+    --background: #232c3a;
+    --background-light: #273c4b;
+    --accent: #b5c2c7;
+}
+
+body {
+    background-color: var(--background);
+    font-family: "Caudex", serif;
+    font-style: normal; /* normal or italic */
+    font-weight: 700; /* 400 or 700 */
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.container {
+    background-color: var(--background-light);
+    border-radius: 10px;
+}
+
+.primary{
+    color: var(--primary);
+}
+.primary-light{
+    color: var(--primary-light);
+    font-weight: 400;
+}
+
+.temperature {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--primary);
+}

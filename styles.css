@@ -150,6 +150,8 @@
     }
 }
 
+
+
 /* Dramatic Section Styling */
 .dramatic-section {
     padding: 4rem 2rem;
@@ -164,7 +166,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 213, 0, 0.1) 0%, transparent 70%);
+    /* background: radial-gradient(circle at 50% 50%, rgba(255, 213, 0, 0.1) 0%, transparent 70%); */
     pointer-events: none;
 }
 

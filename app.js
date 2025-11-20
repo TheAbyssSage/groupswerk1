@@ -11,10 +11,12 @@ updateDatalist();
 // Function to update the datalist
 function updateDatalist() {
     datalist.innerHTML = '';
+    // Create list items for each saved location
     savedLocations.forEach(loc => {
         const option = document.createElement('li');
         option.innerText = `${loc}`;
         option.style.cursor = 'pointer';
+        // Add click event to populate input and show weather
         option.addEventListener('click', () => {
             input.value = loc;
             showStuff(loc);
@@ -29,7 +31,7 @@ document.getElementById("search-btn").addEventListener("click", (event) => {
     event.preventDefault(); // Prevent form submission/page refresh
     const currentLocation = document.getElementById("locationForm").value.trim();
 
-    if (!currentLocation || currentLocation.length === 0) {
+    if (!currentLocation) {
         alert("no location eh? genk it is");
         showStuff("Genk");
         return;
@@ -57,6 +59,7 @@ function showStuff(currentLocation) {
             return response.json();
         })
         .then(data => displayData(data))
+        // error handling for fetch in case of typo or invalid location
         .catch(error => {
             console.error('Error fetching weather data:', error);
             alert(`Failed to fetch weather data for "${currentLocation}". Please check the location name and try again.`);
@@ -98,6 +101,7 @@ function displayData(data) {
     // console.log(WINDDIRECTION)
 
     // writing all cons into innerHTML
+    // null checks to avoid errors if element not found
     if (currentTime)
         currentTime.innerHTML = `${new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
     if (windSpeed)
@@ -127,21 +131,21 @@ function displayData(data) {
 
 showStuff("Genk"); // default location at start
 
-// Function to get weather emoji based on conditions
+// Function to get weather emoji based on conditions based on OpenWeatherMap weather codes
 function getWeatherEmoji(data) {
     const weatherId = data.weather[0].id;
     const cloudCoverage = data.clouds.all;
     const sunriseTimestamp = data.sys.sunrise;
     const sunsetTimestamp = data.sys.sunset;
     const currentTimestamp = Math.floor(Date.now() / 1000);
-    const isNight = currentTimestamp < sunriseTimestamp || currentTimestamp > sunsetTimestamp;
-    
+    const isNight = currentTimestamp < sunriseTimestamp || currentTimestamp >= sunsetTimestamp;
+
     // Thunderstorm (200-232)
     if (weatherId >= 200 && weatherId < 300) return '🌩️';
-    
+
     // Drizzle (300-321)
     if (weatherId >= 300 && weatherId < 400) return '☔';
-    
+
     // Rain (500-531)
     if (weatherId >= 500 && weatherId < 600) {
         // Heavy rain
@@ -150,49 +154,50 @@ function getWeatherEmoji(data) {
         if (weatherId === 500 && cloudCoverage < 50) return isNight ? '🌧️' : '🌦️';
         return '🌧️';
     }
-    
+
     // Snow (600-622)
     if (weatherId >= 600 && weatherId < 700) return '🌨️';
-    
+
     // Atmosphere (fog, mist, etc.) (700-781)
     if (weatherId >= 700 && weatherId < 800) return '🌫️';
-    
+
     // Clear (800)
     if (weatherId === 800) return isNight ? '🌙' : '☀️';
-    
+
     // Clouds (801-804)
     if (weatherId > 800) {
         if (cloudCoverage < 50) return isNight ? '☁️' : '🌤️';
-        if (cloudCoverage === 50) return '⛅';
-        if (cloudCoverage > 50) return '🌥️';
+        if (cloudCoverage >= 45 && cloudCoverage <= 55) return '⛅';
+        if (cloudCoverage > 55) return '🌥️';
     }
-    
+
     return '☁️'; // default
 }
 
+// Function to determine if it's a good time for vampires to hunt
 function nightHunt(data) {
     const sunriseTimestamp = data.sys.sunrise;
     const sunsetTimestamp = data.sys.sunset;
     const currentTimestamp = Math.floor(Date.now() / 1000);
     const cloudCoverage = data.clouds.all;
     const weatherId = data.weather[0].id;
-    
+
     // Check if it's nighttime
     const isNight = currentTimestamp < sunriseTimestamp || currentTimestamp > sunsetTimestamp;
-    
+
     if (isNight) {
         return `<span class="vampire">🧛‍♂️ </span>Perfect time for a hunt!<span class="vampire"> 🧛‍♀️</span>`;
     }
-    
+
     // Daytime - check cloud coverage and weather conditions
     // Heavy clouds (>80%) or rain/snow/storm provides good cover
     if (cloudCoverage > 80 || weatherId < 700) {
         return `<span class="vampire">🧛‍♂️ </span> Safe to hunt! Heavy clouds or precipitation provide cover.<span class="vampire"> 🧛‍♀️</span>`;
     }
-    
+
     if (cloudCoverage > 50) {
         return `<span class="vampire">⚠️ </span> Risky hunt. Moderate cloud cover - proceed with caution.<span class="vampire">⚠️ </span>`;
     }
-    
+
     return `<span class="vampire">☀️ </span> Stay inside! The sun is too strong.<span class="vampire">☀️ </span>`;
 }

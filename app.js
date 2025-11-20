@@ -8,39 +8,33 @@ const datalist = document.getElementById('locationList');
 let savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
 updateDatalist();
 
-// When user clicks the button
-document.getElementById("search-btn").addEventListener('click', () => {
-    const location = input.value.trim();
-    if (!location) return; // ignore empty input
-    
-    // Avoid duplicates
-    if (!savedLocations.includes(location)) {
-        savedLocations.push(location);
-        localStorage.setItem('locations', JSON.stringify(savedLocations));
-        updateDatalist();
-    }
-    
-    // input.value = ''; // optionally clear input after saving -----------------------------disabled this due to another function needing this
-});
-
 // Function to update the datalist
 function updateDatalist() {
     datalist.innerHTML = '';
     savedLocations.forEach(loc => {
-        const option = document.createElement('option');
+        const option = document.createElement('option') || null;
         option.value = loc;
         datalist.appendChild(option);
     });
 }
 // ----------------------------------------------------------------------------------- above here by chatgpt
 
-document.getElementById("search-btn").addEventListener("click", () => {
+// Single event listener for search button
+document.getElementById("search-btn").addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent form submission/page refresh
     const currentLocation = document.getElementById("locationForm").value.trim();
-  
-    if (!currentLocation) {
+
+    if (!currentLocation || currentLocation.length === 0) {
         alert("no location eh? genk it is");
         showStuff("Genk");
         return;
+    }
+
+    // Avoid duplicates - fixed logic
+    if (!savedLocations.includes(currentLocation)) {
+        savedLocations.push(currentLocation);
+        localStorage.setItem('locations', JSON.stringify(savedLocations));
+        updateDatalist();
     }
 
     showStuff(currentLocation);
@@ -51,37 +45,45 @@ function showStuff(currentLocation) {
     const linkie = `https://api.openweathermap.org/data/2.5/weather?q=${currentLocation}&APPID=${API_KEY}&units=metric`; // making linkie because using url made JS angy
 
     fetch(linkie)
-    .then(response => response.json()) // doing its json thingy
-    .then(data => displayData(data)) // executing function displayData using the data
-    .catch();
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => displayData(data))
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+            alert(`Failed to fetch weather data for "${currentLocation}". Please check the location name and try again.`);
+        });
 
     // console.log(linkie);
 }
 
-function displayData (data) {
+function displayData(data) {
     // receiving div id from html
-    const windSpeed = document.getElementById('windSpeed');
-    const windDirection = document.getElementById('windDirection');
-    const rain = document.getElementById('rain');
-    const temperature = document.getElementById('temperature');
-    const sunrise = document.getElementById('sunrise');
-    const sunset = document.getElementById('sunset');
-    const cloudCoverage = document.getElementById('cloudCoverage');
-    const humidity = document.getElementById('humidity');
-
+    const currentTime = document.getElementById('currenttime') || null;
+    const windSpeed = document.getElementById('windSpeed') || null;
+    const windDirection = document.getElementById('windDirection') || null;
+    const rain = document.getElementById('rain') || null;
+    const temperature = document.getElementById('temperature') || null;
+    const sunrise = document.getElementById('sunrise') || null;
+    const sunset = document.getElementById('sunset') || null;
+    const cloudCoverage = document.getElementById('cloudCoverage') || null;
+    const humidity = document.getElementById('humidity') || null;
+    const location = document.getElementById('city') || null;
+    const country = document.getElementById('country') || null;
     // putting all read data from API into const
     const WINDSPEED = data.wind.speed;
     const WINDDIRECTION = data.wind.deg;
-    const RAIN = data.rain?.["1h"] ?? 0;
-    const TEMPERATURE = data.main.temp;
-
+    const TEMPERATURE = Math.round(parseFloat(data.main.temp));
     // extra steps required for turning unix seconds into readable time    
     const sunriseTimestamp = data.sys.sunrise;
     const sunsetTimestamp = data.sys.sunset;
     const sunriseDate = new Date(sunriseTimestamp * 1000);
     const sunsetDate = new Date(sunsetTimestamp * 1000);
-    const SUNRISE = sunriseDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const SUNSET = sunsetDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const SUNRISE = sunriseDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    const SUNSET = sunsetDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 
     const CLOUDCOVERAGE = data.clouds.all;
     const HUMIDITY = data.main.humidity;
@@ -90,13 +92,72 @@ function displayData (data) {
     // console.log(WINDDIRECTION)
 
     // writing all cons into innerHTML
-    windSpeed.innerHTML = `The wind speed is ${WINDSPEED} m/s`;
-    windDirection.innerHTML = `The wind direction is ${WINDDIRECTION} degrees`;
-    rain.innerHTML = `Rain in the past hour is ${RAIN} mm`;
-    temperature.innerHTML = `Temperature is ${TEMPERATURE} degrees`;
-    sunrise.innerHTML = `Sunrise is at ${SUNRISE}`;
-    sunset.innerHTML = `Sunset is at ${SUNSET}`;
-    cloudCoverage.innerHTML = `Cloud coverage is ${CLOUDCOVERAGE}%`;
-    humidity.innerHTML = `Humidity is ${HUMIDITY}%`;
+    if (currentTime)
+        currentTime.innerHTML = `${new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
+    if (windSpeed)
+        windSpeed.innerHTML = `The wind speed is ${WINDSPEED} m/s`;
+    if (windDirection)
+        windDirection.innerHTML = `The wind direction is ${WINDDIRECTION} degrees`;
+    if (rain)
+        rain.innerHTML = `${getWeatherEmoji(data)}`;
+    if (temperature)
+        temperature.innerHTML = `${TEMPERATURE}°<span class="temperature-unit">C</span>`;
+    if (sunrise)
+        sunrise.innerHTML = `Sunrise is at ${SUNRISE}`;
+    if (sunset)
+        sunset.innerHTML = `Sunset is at ${SUNSET}`;
+    if (cloudCoverage)
+        cloudCoverage.innerHTML = `Cloud coverage is ${CLOUDCOVERAGE}%`;
+    if (humidity)
+        humidity.innerHTML = `Humidity is ${HUMIDITY}%`;
+    if (location)
+        location.innerHTML = `${data.name}`;
+    if (country)
+        country.innerHTML = `${data.sys.country}`;
+
+}
+
+showStuff("Genk"); // default location at start
+
+// Function to get weather emoji based on conditions
+function getWeatherEmoji(data) {
+    const weatherId = data.weather[0].id;
+    const cloudCoverage = data.clouds.all;
+    const sunriseTimestamp = data.sys.sunrise;
+    const sunsetTimestamp = data.sys.sunset;
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+    const isNight = currentTimestamp < sunriseTimestamp || currentTimestamp > sunsetTimestamp;
     
+    // Thunderstorm (200-232)
+    if (weatherId >= 200 && weatherId < 300) return '🌩️';
+    
+    // Drizzle (300-321)
+    if (weatherId >= 300 && weatherId < 400) return '☔';
+    
+    // Rain (500-531)
+    if (weatherId >= 500 && weatherId < 600) {
+        // Heavy rain
+        if (weatherId === 502 || weatherId === 503 || weatherId === 504) return '🌧️';
+        // Light rain with sun
+        if (weatherId === 500 && cloudCoverage < 50) return isNight ? '🌧️' : '🌦️';
+        return '🌧️';
+    }
+    
+    // Snow (600-622)
+    if (weatherId >= 600 && weatherId < 700) return '🌨️';
+    
+    // Atmosphere (fog, mist, etc.) (700-781)
+    if (weatherId >= 700 && weatherId < 800) return '🌫️';
+    
+    // Clear (800)
+    if (weatherId === 800) return isNight ? '🌙' : '☀️';
+    
+    // Clouds (801-804)
+    if (weatherId > 800) {
+        if (cloudCoverage < 50) return isNight ? '☁️' : '🌤️';
+        if (cloudCoverage === 50) return '⛅';
+        if (cloudCoverage > 50) return '🌥️';
+    }
+    
+    return '☁️'; // default
 }

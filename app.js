@@ -11,6 +11,13 @@ updateDatalist();
 // Function to update the datalist
 function updateDatalist() {
     datalist.innerHTML = '';
+    
+    // Limit to max 10 locations
+    if (savedLocations.length > 10) {
+        savedLocations.shift(); // Remove first (oldest) item
+        localStorage.setItem('locations', JSON.stringify(savedLocations));
+    }
+    
     // Create list items for each saved location
     savedLocations.forEach(loc => {
         const option = document.createElement('li');
@@ -70,18 +77,18 @@ function showStuff(currentLocation) {
 
 function displayData(data) {
     // receiving div id from html
-    const currentTime = document.getElementById('currenttime') || null;
-    const windSpeed = document.getElementById('windSpeed') || null;
-    const windDirection = document.getElementById('windDirection') || null;
-    const rain = document.getElementById('rain') || null;
-    const temperature = document.getElementById('temperature') || null;
-    const sunrise = document.getElementById('sunrise') || null;
-    const sunset = document.getElementById('sunset') || null;
-    const cloudCoverage = document.getElementById('cloudCoverage') || null;
-    const humidity = document.getElementById('humidity') || null;
-    const location = document.getElementById('city') || null;
-    const country = document.getElementById('country') || null;
-    const huntingtime = document.getElementById('hunting') || null;
+    const currentTime = document.getElementById('currenttime');
+    const windSpeed = document.getElementById('windSpeed');
+    const windDirection = document.getElementById('windDirection');
+    const rain = document.getElementById('rain');
+    const temperature = document.getElementById('temperature');
+    const sunrise = document.getElementById('sunrise');
+    const sunset = document.getElementById('sunset');
+    const cloudCoverage = document.getElementById('cloudCoverage');
+    const humidity = document.getElementById('humidity');
+    const location = document.getElementById('city');
+    const country = document.getElementById('country');
+    const huntingtime = document.getElementById('hunting');
     // putting all read data from API into const
     const WINDSPEED = data.wind.speed;
     const WINDDIRECTION = data.wind.deg;

@@ -43,10 +43,19 @@
                             <li><a class="dropdown-item" href="tomato_guardian.html">Gardeners</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Recent Searches
+                        </a>
+                        <ul class="dropdown-menu text-white ps-2" id="locationList">
+
+                        </ul>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="locationForm"/>
+                    <button class="btn btn-outline-success" type="submit" id="search-btn">Search</button>
                 </form>
             </div>
         </div>
@@ -69,27 +78,27 @@
         <div class="d-flex flex-column p-5 container">
             <div class="d-flex flex-fow justify-content-between text-box align-items-center p-3">
                 <div>
-                    <div class="primary">
+                    <div class="primary" id="city">
                         Location
                     </div>
-                    <div class="primary-light">
-                        City, Country
+                    <div class="primary-light" id="country">
+                        Country
                     </div>
                 </div>
-                <div class="primary">
+                <div class="primary" id="currenttime">
                     04:50 PM
                 </div>
             </div>
 
-            <div class="d-flex flex-row justify-content-between text-box align-items-center p-3 mt-5">
-                <div class="temperature">
+            <div class="d-flex flex-row justify-content-evenly text-box align-items-center p-3 mt-5">
+                <div class="temperature" id="temperature">
                     21°<span class="temperature-unit">C</span>
                 </div>
                 <div class="text-center">
-                    <div class="weather-icon">
+                    <div class="weather-icon" id="rain">
                         ⛅
                     </div>
-                    <div class="current-weather">
+                    <div class="current-weather" id="cloudCoverage">
                         <!-- Cloudyness -->
                         Partly Cloudy
                     </div>
@@ -98,21 +107,21 @@
 
             <div class="d-flex justify-content-evenly text-box align-items-center mt-5 p-3 text-center">
                 <div class="primary">
-                    <span class="vampire">🌅</span><br>sunrise: 06:12 AM
+                    <span class="vampire">🌅</span><br><span id="sunrise">sunrise: 06:12 AM</span>
                 </div>
                 <div class="primary">
-                    <span class="vampire">🌄</span><br>sunset: 07:45 PM
+                    <span class="vampire">🌄</span><br><span id="sunset">sunset: 07:45 PM</span>
                 </div>
             </div>
 
             <div class="d-flex flex-row justify-content-evenly align-items-center text-center">
-                <div class="huntingtime"><span class="vampire">🧛‍♂️ </span>Perfect weather for a night hunt!<span class="vampire"> 🧛‍♀️</span></div>
+                <div class="huntingtime" id="hunting"></div>
             </div>
         </div>
     </div>
 
 
-    <!-- <script src="app.js"></script> -->
+    <script src="app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>

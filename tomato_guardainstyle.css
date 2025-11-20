@@ -1,3 +1,18 @@
+.bg {
+    margin: 40px auto 0;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 40%;
+    height: auto;
+}
+
+
+.home {
+    background-color: antiquewhite;
+}
+
 /* Font */
 .crimson-text-regular {
   font-family: "Crimson Text", serif;

@@ -112,7 +112,7 @@ function displayData(data) {
     if (currentTime)
         currentTime.innerHTML = `${new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
     if (windSpeed)
-        windSpeed.innerHTML = `The wind speed is ${WINDSPEED} m/s`;
+        windSpeed.innerHTML = `${WINDSPEED} <span class="windSpeed-unit">m/s</span>`;
     if (windDirection)
         windDirection.innerHTML = `The wind direction is ${WINDDIRECTION} degrees`;
     if (rain)

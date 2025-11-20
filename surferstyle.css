@@ -1,0 +1,106 @@
+:root {
+    --primary: #101047;
+    --primary-light: #151055;
+    --secondary: #008dc5;
+    --background: #0C0004;
+    --background-light: #242f61;
+    --accent: #1100aa;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 1.2rem;
+}
+
+.font {
+    font-family: "Original Surfer", serif;
+    font-style: normal;
+    font-weight: 700; /* 400 or 700 */
+}
+
+.container {
+    background-color: var(--background-light);
+    border-radius: 10px;
+}
+
+.text-box {
+    background: #c4c4c41e;
+    border-radius: 20px;
+}
+
+.primary{
+    color: var(--primary);
+}
+.primary-light{
+    color: var(--primary-light);
+    font-weight: 400;
+}
+
+.windSpeed {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.windSpeed-unit {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--primary-light);
+}
+
+.temperature {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.temperature-unit {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--primary-light);
+}
+
+.windDirection-img {
+    max-width: 40%;
+    transform: rotate(45);
+}
+
+.windDirection {
+    color: var(--primary-light);
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-top: -25px;
+}
+
+.weather-icon {
+    font-size: 5rem;
+    padding: 5px; 
+}
+
+.current-weather {
+    color: var(--primary-light);
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-top: -25px;
+}
+
+.huntingtime {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-top: 10px;
+    border-bottom: var(--secondary) 5px solid;
+    border-radius: 15px;
+}
+
+.vampire {
+    font-size: 2.5rem;
+}

@@ -10,6 +10,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="surferstyle.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&family=Roboto+Flex:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -38,33 +44,78 @@
                             <li><a class="dropdown-item" href="tomato_guardian.html">Gardeners</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Recent Searches
+                        </a>
+                        <ul class="dropdown-menu text-white ps-2" id="locationList">
+
+                        </ul>
+                    </li>
                 </ul>
 
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="locationForm"/>
+                    <button class="btn btn-outline-success" type="submit" id="search-btn">Search</button>
                 </form>
 
             </div>
         </div>
     </nav>
 
+    <div class="d-flex justify-content-center mt-5 centered font">
+        <div class="d-flex flex-column p-5 container">
+            <div class="d-flex flex-fow justify-content-between text-box align-items-center p-3">
+                <div>
+                    <div class="primary" id="city">
+                        Location
+                    </div>
+                    <div class="primary-light" id="country">
+                        Country
+                    </div>
+                </div>
+                <div class="primary" id="currenttime">
+                    04:50 PM
+                </div>
+            </div>
 
-    <input type="text" id="locationForm" placeholder="Enter lcoation..." class="border p-2" list="locationList" />
-    <datalist id="locationList"></datalist>
-    <button id="search-btn">Set Location</button>
+            <div class="d-flex flex-row justify-content-evenly text-box align-items-center p-3 mt-5">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="windSpeed-unit">The windspeed is</div>
+                    <div class="windSpeed" id="windSpeed"></div>
+                </div>
+                <div class="text-center">
+                    <div class="windDirection">
+                        <img src="Images/arrow.png" class="windDirection-img" id="windDirection-img">
+                    </div>
+                    <div class="windDirection mt-2" id="windDirection">
+                        
+                    </div>
+                </div>
+            </div>
 
-    <div id="windSpeed"></div>
-    <div id="windDirection"></div>
-    <div id="rain"></div>
-    <div id="temperature"></div>
-    <div id="sunrise"></div>
-    <div id="sunset"></div>
-    <div id="cloudCoverage"></div>
-    <div id="humidity"></div>
+            <div class="d-flex flex-row justify-content-evenly text-box align-items-center p-3 mt-5">
+                <div class="temperature" id="temperature">
+                    21°<span class="temperature-unit">C</span>
+                </div>
+                <div class="text-center">
+                    <div class="weather-icon" id="rain">
+                        ⛅
+                    </div>
+                    <div class="current-weather" id="cloudCoverage">
+                        <!-- Cloudyness -->
+                        Partly Cloudy
+                    </div>
+                </div>
+            </div>
 
-
-
+            <div class="d-flex flex-row justify-content-evenly align-items-center text-center">
+                <div class="huntingtime" id="hunting"></div>
+            </div>
+        </div>
+    </div>
+    
     <script src="app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

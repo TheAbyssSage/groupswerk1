@@ -14,7 +14,43 @@
 </head>
 
 <body>
-    <input type="text" id="locationForm" placeholder="Enter lcoation..." class="border p-2" list="locationList"/>
+
+    <!-- Navgation Bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a href="index.html"><img src="images/logo_t.png" alt="Weather App" width="70" height="me-auto"
+                    class="d-inline-block align-text-top" style="cursor: pointer;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="surfers.html">Surfers</a></li>
+                            <li><a class="dropdown-item" href="vampire.html">Vampires</a></li>
+                            <li><a class="dropdown-item" href="tomato_guardian.html">Gardeners</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <input type="text" id="locationForm" placeholder="Enter lcoation..." class="border p-2" list="locationList" />
     <datalist id="locationList"></datalist>
     <button id="search-btn">Set Location</button>
 

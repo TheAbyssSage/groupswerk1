@@ -4,6 +4,9 @@
     background: linear-gradient(180deg, rgba(28, 28, 28, 1) 0%, rgb(122, 102, 0) 28%, rgba(28, 28, 28, 1) 70%);
 }
 
+body {
+    scroll-behavior: smooth;
+}
 
 /* Font */
 .crimson-text-regular {

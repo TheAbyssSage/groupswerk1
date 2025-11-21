@@ -27,7 +27,7 @@
         <div class="container-fluid">
             <a href="index.html"><img src="images/logo_t.png" alt="Weather App" width="70" height="me-auto"
                     class="d-inline-block align-text-top" style="cursor: pointer;"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,10 +45,20 @@
                             <li><a class="dropdown-item" href="tomato_guardian.html">Gardeners</a></li>
                         </ul>
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Recent Searches
+                        </a>
+                        <ul class="dropdown-menu text-white ps-2" id="locationList">
+                        </ul>
+                    </li>
                 </ul>
 
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="“I will find you.” -Taken." aria-label="Search" />
+                    <input class="form-control me-2" type="search" placeholder="“I will find you.” -Taken."
+                        aria-label="Search" />
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
 
@@ -59,21 +69,25 @@
 
     <!-- Triangle animation -->
     <div class="d-flex justify-content-center align-items-center" style="min-height: 500px;">
-        <div id="triangle">
-            <svg id="Layer_1" data-name="Layer 1" version="1.1" viewBox="0 0 2000 2000">
-                <polygon class="cls-1"
-                    points="928 781 1021 951 784.5 1371.97 1618 1371.97 1530.32 1544 509 1539 928 781">
-                </polygon>
-                <polygon class="cls-3"
-                    points="1618 1371.97 784.5 1371.97 874.93 1211 1346 1211 923.1 456 1110.06 456 1618 1371.97">
-                </polygon>
-                <g id="Layer_2" data-name="Layer 2">
-                    <polygon class="cls-2"
-                        points="418 1372.74 509 1539 928 781 1162.32 1211 1346 1211 923.1 456 418 1372.74"></polygon>
-                </g>
-            </svg>
-        </div>
+        <a href="https://illuminati.am/" target="_blank" rel="noopener noreferrer">
+            <div id="triangle">
+                <svg id="Layer_1" data-name="Layer 1" version="1.1" viewBox="0 0 2000 2000">
+                    <polygon class="cls-1"
+                        points="928 781 1021 951 784.5 1371.97 1618 1371.97 1530.32 1544 509 1539 928 781">
+                    </polygon>
+                    <polygon class="cls-3"
+                        points="1618 1371.97 784.5 1371.97 874.93 1211 1346 1211 923.1 456 1110.06 456 1618 1371.97">
+                    </polygon>
+                    <g id="Layer_2" data-name="Layer 2">
+                        <polygon class="cls-2"
+                            points="418 1372.74 509 1539 928 781 1162.32 1211 1346 1211 923.1 456 418 1372.74">
+                        </polygon>
+                    </g>
+                </svg>
+            </div>
+        </a>
     </div>
+
 
 
     <br>

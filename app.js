@@ -427,12 +427,15 @@ window.onload = function () {
     application.loop();
 };
 
-// app.js snippet – ensure canvas matches viewport size
+// app.js (add this resize logic if you don't already set canvas size)
+/* Ensure canvas matches viewport and re-render on resize */
 const canvas = document.getElementById('canvas');
-const resizeCanvas = () => {
+
+function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  // re-render your wave pattern here if needed
-};
+  // TODO: call your wave render/draw function here so it redraws at the new size
+}
+
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();

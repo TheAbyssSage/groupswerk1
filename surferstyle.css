@@ -1,23 +1,46 @@
+/* surferstyle.css */
+
+/* Theme vars */
 :root {
-    --primary: #101047;
+    --primary: #ececec;
     --primary-light: #151055;
-    --secondary: #008dc5;
-    /* --background: #0C0004; */
-    /* --background-light: #242f61; */
+    --secondary: #f3f6f7;
     --accent: #1100aa;
 }
 
+/* Original dark-blue wave background behind canvas */
+html,
 body {
-    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+    background-color: hsl(195, 100%, 7%);
 }
 
+/* Fixed full-screen canvas for the wave animation */
+#canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    margin: 0;
+    display: block;
+    filter: url('#shadowed-goo');
+}
+
+.white {
+    color: white !important;
+}
+
+/* Typography + layout helpers */
 .centered {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-
     font-size: 1.2rem;
 }
 
@@ -25,55 +48,55 @@ body {
     font-family: "Original Surfer", serif;
     font-style: normal;
     font-weight: 700;
-    /* 400 or 700 */
 }
 
+/* Outer container should be transparent so waves show through */
 .container {
-    background-color: var(--background-light);
+    background-color: transparent;
     border-radius: 10px;
+    position: relative;
+    z-index: 2; /* above canvas */
 }
 
-.text-box {
-    background: #c4c4c41e;
+/* Top time card: glass background with 0.46 border */
+.time .rounded-3 {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.46);
     border-radius: 20px;
 }
 
-.primary {
-    color: var(--primary);
+/* Weather boxes: glass background with 0.46 border */
+.time .text-box {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.46);
+    border-radius: 20px;
 }
 
-.primary-light {
-    color: var(--primary-light);
-    font-weight: 400;
+/* Pull the weather display up to overlap the waves */
+.centered.font.position-sticky.top-0.border-bottom {
+    margin-top: -120px;
+    z-index: 2;
+    position: relative;
 }
 
-.windSpeed {
-    font-size: 4rem;
-    font-weight: 700;
-    color: var(--primary);
-}
+/* Colors */
+.primary { color: var(--primary); }
+.primary-light { color: var(--primary-light); font-weight: 400; }
 
-.windSpeed-unit {
-    font-size: 2rem;
-    font-weight: 400;
-    color: var(--primary-light);
-}
+/* Components */
+.windSpeed { font-size: 4rem; font-weight: 700; color: var(--primary); }
+.windSpeed-unit { font-size: 2rem; font-weight: 400; color: var(--primary-light); }
 
-.temperature {
-    font-size: 5rem;
-    font-weight: 700;
-    color: var(--primary);
-}
-
-.temperature-unit {
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: var(--primary-light);
-}
+.temperature { font-size: 5rem; font-weight: 700; color: var(--primary); }
+.temperature-unit { font-size: 2.5rem; font-weight: 400; color: var(--primary-light); }
 
 .windDirection-img {
     max-width: 40%;
-    transform: rotate(45);
+    transform: rotate(45deg);
 }
 
 .windDirection {
@@ -83,10 +106,7 @@ body {
     margin-top: -25px;
 }
 
-.weather-icon {
-    font-size: 5rem;
-    padding: 5px;
-}
+.weather-icon { font-size: 5rem; padding: 5px; }
 
 .current-weather {
     color: var(--primary-light);
@@ -103,101 +123,16 @@ body {
     border-radius: 15px;
 }
 
-.vampire {
-    font-size: 2.5rem;
-}
+.vampire { font-size: 2.5rem; }
 
+/* Hide the inline SVG element but keep filter available */
+svg { display: none; }
 
-
-
-/* Wave pattern */
-html,
-body {
-    margin: 0;
-    padding: 0;
-    background-color: hsl(195, 100%, 7%);
-}
-
-/* #canvas {
-    margin: 0 auto;
-    display: block;
-    filter: url('#shadowed-goo');
-} */
-
-svg {
-    display: none;
-}
-
-
-
-
-/* Make the canvas a full-screen background behind content */
-#canvas {
-    position: fixed;
-    /* sit behind as a background */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    /* ensure the wave fills the viewport */
-    pointer-events: none;
-    /* let clicks pass through */
-    z-index: 0;
-    /* behind other content */
-    margin: 0;
-    display: block;
-    filter: url('#shadowed-goo');
-}
-
-/* Ensure body and main containers don't block the wave visually */
-
-
-/* Make big box transparent and layered above the canvas */
-.container {
-    background-color: transparent;
-    /* transparent bg to see wave */
-    border-radius: 10px;
+/* Navbar translucency so waves remain visible under it */
+.navbar.bg-body-tertiary {
+    background-color: #1c1c1cf4 !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     position: relative;
-    z-index: 2;
-    /* above the canvas */
-}
-
-/* Optional: semi-transparent inner boxes for readability */
-.text-box .time {
-    background: rgba(255, 255, 255, 0.789);
-    /* subtle glassy bg */
-    border-radius: 20px;
-    backdrop-filter: blur(4px);
-    /* adds glass effect */
-}
-
-/* Pull the weather display up to overlap the wave */
-.centered.font.position-sticky.top-0.border-bottom {
-    margin-top: -120px;
-    /* adjust overlap depth to taste */
-    z-index: 2;
-    /* above canvas */
-    position: relative;
-    /* maintain layout context */
-}
-
-/* Fix arrow rotation unit */
-.windDirection-img {
-    max-width: 40%;
-    transform: rotate(45deg);
-    /* 'deg' unit required */
-}
-
-/* Keep page background dark but still see canvas */
-html,
-body {
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    /* let canvas show */
-}
-
-/* Hide the inline SVG element itself but keep filter available */
-svg {
-    display: none;
+    z-index: 3;
 }

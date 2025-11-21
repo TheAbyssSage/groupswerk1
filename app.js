@@ -207,4 +207,8 @@ function nightHunt(data) {
     }
 
     return `<span class="vampire">☀️ </span> Stay inside! The sun is too strong.<span class="vampire">☀️ </span>`;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bf02a6056cbecae9eaf90a828f680f7b9cda6301

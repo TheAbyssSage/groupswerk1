@@ -31,6 +31,7 @@ function updateDatalist() {
         datalist.appendChild(option);
     });
 }
+
 // ----------------------------------------------------------------------------------- above here by chatgpt
 
 // Single event listener for search button
@@ -51,9 +52,72 @@ document.getElementById("search-btn").addEventListener("click", (event) => {
         updateDatalist();
     }
 
+
     showStuff(currentLocation);
 });
 
+// ----------------------------------------------------------- below all favorites
+
+// elements for favorites list
+const addToFavoritesButton = document.getElementById('add-to-favorites');
+const favDatalist = document.getElementById('favLocations'); 
+
+// load saved favorite locations from localstorage
+let savedFavLocations = JSON.parse(localStorage.getItem('favLocations')) || [];
+updateFavDatalist();
+
+function updateFavDatalist() {
+
+    // FIX: ensure element exists
+    if (!favDatalist) {
+        console.error("favLocations element not found in HTML");
+        return;
+    }
+
+    favDatalist.innerHTML = '';
+
+    // Limit to max 10 locations
+    if (savedFavLocations.length > 10) {
+        savedFavLocations.shift(); 
+        localStorage.setItem('favLocations', JSON.stringify(savedFavLocations)); 
+    }
+
+    // Create list items
+    savedFavLocations.forEach(loc => {
+        const li = document.createElement('li');
+        li.textContent = loc;
+        li.style.cursor = 'pointer';
+
+        li.addEventListener('click', () => {
+            input.value = loc;
+            showStuff(loc);
+        });
+
+        favDatalist.appendChild(li);
+    });
+}
+
+addToFavoritesButton.addEventListener('click', () => {
+
+    const currentLocation = input.value.trim();
+
+    if (!currentLocation) {
+        alert("Enter a location first!");
+        return;
+    }
+
+    if (!savedFavLocations.includes(currentLocation)) {
+
+        savedFavLocations.push(currentLocation);
+        localStorage.setItem('favLocations', JSON.stringify(savedFavLocations));
+        updateFavDatalist();
+
+        alert('Location added to favorites!');
+    } else {
+        alert('This location is already in your favorites!');
+    }
+});
+// ------------------------------------------------------------------- above all favorite related
 
 function showStuff(currentLocation) {
     const linkie = `https://api.openweathermap.org/data/2.5/weather?q=${currentLocation}&APPID=${API_KEY}&units=metric`; // making linkie because using url made JS angy

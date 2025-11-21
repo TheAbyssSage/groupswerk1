@@ -10,6 +10,7 @@
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=kid_star" />
     <link rel="stylesheet" href="tomato_guardainstyle.css">
 </head>
 
@@ -52,6 +53,16 @@
                             <!-- Populated by app.js (updateDatalist) -->
                         </ul>
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Favorites
+                        </a>
+                        <ul class="dropdown-menu text-white ps-2" id="favLocations">
+                            <!-- Populated by app.js (updateFavDatalist) -->
+                        </ul>
+                    </li>
                 </ul>
 
                 <!-- Search form wired to app.js -->
@@ -79,7 +90,7 @@
             <div class="row g-3 align-items-start">
                 <div class="col-12 col-md-6 text-center text-md-start d-flex flex-column">
                     <h4 class="text-uppercase text-muted mb-1">Place:</h4>
-                    <div class="primary fw-semibold" id="city">Location</div>
+                    <div class="primary fw-semibold" id="city">Location</div><span class="material-symbols-outlined favButton" id="add-to-favorites">kid_star</span>
                     <div class="primary-light text-muted" id="country">Country</div>
                 </div>
                 <div class="col-12 col-md-6 text-center text-md-end d-flex flex-column">
@@ -163,6 +174,7 @@
 
     <!-- Scripts -->
     <script src="app.js"></script>
+    <script src="https://kit.fontawesome.com/513fd64cda.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>

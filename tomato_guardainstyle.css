@@ -71,6 +71,16 @@ body {
     text-shadow: 0 0 8px rgba(255, 213, 0, 0.6);
 }
 
+.favButton {
+    font-size: 1rem;
+}
+
+.favButton:hover {
+    color: #FFD500;
+    text-shadow: 0 0 8px rgba(255, 213, 0, 0.6);
+    cursor: pointer;
+}
+
 .btn-outline-success {
     color: #fff !important;
     border-color: #fff !important;
